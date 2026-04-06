@@ -131,4 +131,4 @@ elif st.session_state.stage == 'game_over':
         # Reset everything
         for key in st.session_state.keys():
             del st.session_state[key]
-        st.rerun()s
+        st.rerun()
