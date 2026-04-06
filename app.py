@@ -81,8 +81,6 @@ elif st.session_state.stage in ['innings1', 'innings2']:
         # OUT condition
         if bat == bowl:
             log_event(f"**WICKET! {batter} are OUT!**")
-            st.error(f"OUT! {batter} scored a total of " + 
-                     str(st.session_state.user_score if st.session_state.is_user_batting else st.session_state.comp_score))
             
             # Switch innings or end game
             if st.session_state.stage == 'innings1':
@@ -105,7 +103,9 @@ elif st.session_state.stage in ['innings1', 'innings2']:
                 current_score = st.session_state.user_score if st.session_state.is_user_batting else st.session_state.comp_score
                 if current_score >= st.session_state.target:
                     st.session_state.stage = 'game_over'
-                    st.rerun()
+            
+            # --- FIX: Rerun instantly to update the scoreboard ---
+            st.rerun()
                     
     # Show commentary
     with st.expander("Match Commentary", expanded=True):
